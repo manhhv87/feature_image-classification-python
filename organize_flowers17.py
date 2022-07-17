@@ -38,15 +38,16 @@ if __name__ == '__main__':
 		os.makedirs(train_dir)
 
 	download_dataset(flowers17_name, flowers17_url, train_dir)
-	if os.path.exists(train_dir + "\\jpg"):
-		os.rename(train_dir + "\\jpg", train_dir + "\\train")
+
+	if os.path.exists(train_dir + "/jpg"):
+		os.rename(train_dir + "/jpg", train_dir + "/train")
 
 
 	# get the class label limit
 	class_limit = 17
 
 	# take all the images from the dataset
-	image_paths = glob.glob(train_dir + "\\train\\*.jpg")
+	image_paths = glob.glob(train_dir + "/train/*.jpg")
 
 	# variables to keep track
 	label = 0
@@ -62,15 +63,15 @@ if __name__ == '__main__':
 	# loop over the class labels
 	for x in range(1, class_limit+1):
 		# create a folder for that class
-		os.makedirs(train_dir + "\\train\\" + class_names[label])
+		os.makedirs(train_dir + "/train/" + class_names[label])
 		
 		# get the current path
-		cur_path = train_dir + "\\train\\" + class_names[label] + "\\"
+		cur_path = train_dir + "/train/" + class_names[label] + "/"
 		
 		# loop over the images in the dataset
 		for index, image_path in enumerate(image_paths[i:j], start=1):
 			original_path   = image_path
-			image_path      = image_path.split("\\")
+			image_path      = image_path.split("/")
 			image_file_name = str(index) + ".jpg"
 			os.rename(original_path, cur_path + image_file_name)
 		
