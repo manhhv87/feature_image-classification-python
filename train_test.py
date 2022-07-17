@@ -18,7 +18,7 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 from sklearn.naive_bayes import GaussianNB
 from sklearn.svm import SVC
-from sklearn.externals import joblib
+import joblib
 
 warnings.filterwarnings('ignore')
 
@@ -90,7 +90,7 @@ print("Test labels : {}".format(testLabelsGlobal.shape))
 
 # 10-fold cross validation
 for name, model in models:
-    kfold = KFold(n_splits=10, random_state=seed)
+    kfold = KFold(n_splits=10, shuffle=True, random_state=seed)
     cv_results = cross_val_score(model, trainDataGlobal, trainLabelsGlobal, cv=kfold, scoring=scoring)
     results.append(cv_results)
     names.append(name)
